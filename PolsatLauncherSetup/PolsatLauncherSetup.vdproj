@@ -50,14 +50,6 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
-                "Items"
-                {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
-                    {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
-                    }
-                }
             }
         }
         "Release"
@@ -82,14 +74,6 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
-                "Items"
-                {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
-                    {
-                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
-                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
-                    }
-                }
             }
         }
     }
@@ -199,7 +183,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PolsatLauncherSetup"
         "ProductCode" = "8:{319F828C-7D82-473B-8D0A-49781FB63A47}"
-        "PackageCode" = "8:{550A8193-B1B4-482F-99A0-E00CDEBE5AEB}"
+        "PackageCode" = "8:{3AFB8E90-EDBC-49BD-9DB8-C0165C16FDB2}"
         "UpgradeCode" = "8:{041F826F-D5B7-48CB-922F-7979C9756BE7}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"

@@ -509,8 +509,7 @@ namespace PolsatLauncher_beta
                 LogsValue = button3.Text
             };
             string jsonData = JsonSerializer.Serialize(data);
-            var filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PolsatLauncherData.json");
-            File.WriteAllText(filename, jsonData);
+            File.WriteAllText("data.json", jsonData);
         }
 
         private void LoadCurrentValues(object sender)
@@ -518,8 +517,7 @@ namespace PolsatLauncher_beta
             try
             {
                 // Wczytywanie danych z pliku data.json
-                var filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PolsatLauncherData.json");
-                string jsonData = File.ReadAllText(filename);
+                string jsonData = File.ReadAllText("data.json");
 
                 // Deserializacja danych JSON do obiektu
                 var data = JsonSerializer.Deserialize<DataObject>(jsonData);
