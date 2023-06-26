@@ -546,7 +546,6 @@ namespace PolsatLauncher_beta
             catch
             {
                 TextToLog("Brak zapisanych preferencji");
-                File.Create("data.json");
             }
         }
 
