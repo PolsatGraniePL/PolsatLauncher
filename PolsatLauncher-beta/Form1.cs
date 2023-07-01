@@ -379,7 +379,8 @@ namespace PolsatLauncher_beta
                 }
                 label4.Text = Text;
 
-                AddLog("\n[" + e.FileKind.ToString() + "] " + e.FileName + " - " + e.ProgressedFileCount + "/" + e.TotalFileCount);
+                var data = DateTime.Now.ToString("HH:mm:ss");
+                AddLog("\n(" + data + ") [" + e.FileKind.ToString() + "] " + e.FileName + " - " + e.ProgressedFileCount + "/" + e.TotalFileCount);
                 if (e.ProgressedFileCount == e.TotalFileCount)
                 {
                     TextToLog("Resource loaded");
@@ -454,7 +455,8 @@ namespace PolsatLauncher_beta
             {
                 richTextBox1.Invoke(new Action(delegate ()
                 {
-                    AddLog("\n[Launcher] " + Tekst);
+                    var data = DateTime.Now.ToString("HH:mm:ss");
+                    AddLog("\n(" + data + ") [Launcher] " + Tekst);
                 }));
             }
             catch { }
@@ -467,10 +469,8 @@ namespace PolsatLauncher_beta
             {
                 try
                 {
-                    // Połączenie kodu XML w jeden ciąg znaków
                     string xmlCode = string.Join("", log.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries));
 
-                    // Wyszukanie wartości CDATA
                     int cdataStartIndex = xmlCode.IndexOf("<![CDATA[");
                     int cdataEndIndex = xmlCode.IndexOf("]]>");
 
@@ -478,7 +478,8 @@ namespace PolsatLauncher_beta
                     {
                         cdataStartIndex += "<![CDATA[".Length;
                         string cdataValue = xmlCode.Substring(cdataStartIndex, cdataEndIndex - cdataStartIndex);
-                        AddLog("\n[Minecraft] " + cdataValue);
+                        var data = DateTime.Now.ToString("HH:mm:ss");
+                        AddLog("\n(" + data + ") [Minecraft] " + cdataValue);
                     }
                 }
                 catch
@@ -517,14 +518,11 @@ namespace PolsatLauncher_beta
         {
             try
             {
-                // Wczytywanie danych z pliku data.json
                 var filename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PolsatLauncherData.json");
                 string jsonData = File.ReadAllText(filename);
 
-                // Deserializacja danych JSON do obiektu
                 var data = JsonSerializer.Deserialize<DataObject>(jsonData);
 
-                // Wyświetlanie wczytanych wartości
                 comboBox1.Text = data.ComboBox1Value;
                 textBox2.Text = data.TextBox2Value;
                 textBox3.Text = data.TextBox3Value;
