@@ -52,13 +52,18 @@ namespace PolsatLauncher_beta
             notifyIcon1 = new System.Windows.Forms.NotifyIcon(components);
             checkBox3 = new System.Windows.Forms.CheckBox();
             button3 = new System.Windows.Forms.Button();
+            tabControl1 = new System.Windows.Forms.TabControl();
+            tabPage1 = new System.Windows.Forms.TabPage();
+            tabPage2 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // textBox1
             // 
             textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            textBox1.Location = new System.Drawing.Point(59, 73);
+            textBox1.Location = new System.Drawing.Point(55, 74);
             textBox1.Name = "textBox1";
             textBox1.Size = new System.Drawing.Size(346, 16);
             textBox1.TabIndex = 0;
@@ -70,7 +75,7 @@ namespace PolsatLauncher_beta
             button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             button1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            button1.Location = new System.Drawing.Point(12, 136);
+            button1.Location = new System.Drawing.Point(8, 137);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(393, 47);
             button1.TabIndex = 1;
@@ -83,11 +88,12 @@ namespace PolsatLauncher_beta
             comboBox1.BackColor = System.Drawing.Color.White;
             comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new System.Drawing.Point(59, 12);
+            comboBox1.Location = new System.Drawing.Point(55, 13);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new System.Drawing.Size(346, 23);
             comboBox1.TabIndex = 2;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            comboBox1.TextUpdate += comboBox1_TextUpdate;
             // 
             // checkBox1
             // 
@@ -95,7 +101,7 @@ namespace PolsatLauncher_beta
             checkBox1.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             checkBox1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            checkBox1.Location = new System.Drawing.Point(165, 189);
+            checkBox1.Location = new System.Drawing.Point(161, 190);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new System.Drawing.Size(85, 21);
             checkBox1.TabIndex = 3;
@@ -106,7 +112,7 @@ namespace PolsatLauncher_beta
             // 
             textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBox2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBox2.Location = new System.Drawing.Point(197, 44);
+            textBox2.Location = new System.Drawing.Point(193, 45);
             textBox2.Name = "textBox2";
             textBox2.Size = new System.Drawing.Size(65, 15);
             textBox2.TabIndex = 4;
@@ -117,7 +123,7 @@ namespace PolsatLauncher_beta
             // 
             textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBox3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            textBox3.Location = new System.Drawing.Point(290, 44);
+            textBox3.Location = new System.Drawing.Point(286, 45);
             textBox3.Name = "textBox3";
             textBox3.Size = new System.Drawing.Size(65, 15);
             textBox3.TabIndex = 5;
@@ -128,7 +134,7 @@ namespace PolsatLauncher_beta
             // 
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label1.Location = new System.Drawing.Point(174, 44);
+            label1.Location = new System.Drawing.Point(170, 45);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(18, 17);
             label1.TabIndex = 6;
@@ -138,7 +144,7 @@ namespace PolsatLauncher_beta
             // 
             label2.AutoSize = true;
             label2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label2.Location = new System.Drawing.Point(268, 44);
+            label2.Location = new System.Drawing.Point(264, 45);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(18, 17);
             label2.TabIndex = 7;
@@ -148,7 +154,7 @@ namespace PolsatLauncher_beta
             // 
             trackBar1.Cursor = System.Windows.Forms.Cursors.Hand;
             trackBar1.LargeChange = 1024;
-            trackBar1.Location = new System.Drawing.Point(12, 214);
+            trackBar1.Location = new System.Drawing.Point(8, 215);
             trackBar1.Maximum = 16384;
             trackBar1.Minimum = 1024;
             trackBar1.Name = "trackBar1";
@@ -163,7 +169,7 @@ namespace PolsatLauncher_beta
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label3.Location = new System.Drawing.Point(113, 242);
+            label3.Location = new System.Drawing.Point(109, 243);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(185, 17);
             label3.TabIndex = 9;
@@ -172,7 +178,7 @@ namespace PolsatLauncher_beta
             // progressBar1
             // 
             progressBar1.BackColor = System.Drawing.SystemColors.Control;
-            progressBar1.Location = new System.Drawing.Point(12, 290);
+            progressBar1.Location = new System.Drawing.Point(8, 291);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new System.Drawing.Size(393, 23);
             progressBar1.TabIndex = 1025;
@@ -183,7 +189,7 @@ namespace PolsatLauncher_beta
             label4.AutoSize = true;
             label4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             label4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label4.Location = new System.Drawing.Point(48, 272);
+            label4.Location = new System.Drawing.Point(44, 273);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(48, 17);
             label4.TabIndex = 1026;
@@ -193,7 +199,7 @@ namespace PolsatLauncher_beta
             // 
             richTextBox1.BackColor = System.Drawing.SystemColors.ControlLight;
             richTextBox1.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            richTextBox1.Location = new System.Drawing.Point(413, 0);
+            richTextBox1.Location = new System.Drawing.Point(409, 1);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ReadOnly = true;
             richTextBox1.Size = new System.Drawing.Size(434, 313);
@@ -205,7 +211,7 @@ namespace PolsatLauncher_beta
             // 
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label5.Location = new System.Drawing.Point(4, 14);
+            label5.Location = new System.Drawing.Point(1, 15);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(52, 17);
             label5.TabIndex = 1029;
@@ -215,7 +221,7 @@ namespace PolsatLauncher_beta
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label6.Location = new System.Drawing.Point(4, 73);
+            label6.Location = new System.Drawing.Point(1, 74);
             label6.Name = "label6";
             label6.Size = new System.Drawing.Size(37, 17);
             label6.TabIndex = 1030;
@@ -224,7 +230,7 @@ namespace PolsatLauncher_beta
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new System.Drawing.Point(4, 272);
+            label7.Location = new System.Drawing.Point(0, 273);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(0, 15);
             label7.TabIndex = 1031;
@@ -236,7 +242,7 @@ namespace PolsatLauncher_beta
             checkBox2.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             checkBox2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            checkBox2.Location = new System.Drawing.Point(6, 104);
+            checkBox2.Location = new System.Drawing.Point(3, 105);
             checkBox2.Name = "checkBox2";
             checkBox2.Size = new System.Drawing.Size(138, 21);
             checkBox2.TabIndex = 1032;
@@ -250,7 +256,7 @@ namespace PolsatLauncher_beta
             button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             button2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            button2.Location = new System.Drawing.Point(148, 99);
+            button2.Location = new System.Drawing.Point(144, 100);
             button2.Name = "button2";
             button2.Size = new System.Drawing.Size(257, 31);
             button2.TabIndex = 1033;
@@ -272,7 +278,7 @@ namespace PolsatLauncher_beta
             checkBox3.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             checkBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             checkBox3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            checkBox3.Location = new System.Drawing.Point(6, 42);
+            checkBox3.Location = new System.Drawing.Point(2, 43);
             checkBox3.Name = "checkBox3";
             checkBox3.Size = new System.Drawing.Size(162, 21);
             checkBox3.TabIndex = 1034;
@@ -286,7 +292,7 @@ namespace PolsatLauncher_beta
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             button3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            button3.Location = new System.Drawing.Point(387, 267);
+            button3.Location = new System.Drawing.Point(383, 268);
             button3.Name = "button3";
             button3.Size = new System.Drawing.Size(20, 20);
             button3.TabIndex = 1035;
@@ -294,32 +300,71 @@ namespace PolsatLauncher_beta
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            tabControl1.HotTrack = true;
+            tabControl1.ItemSize = new System.Drawing.Size(113, 20);
+            tabControl1.Location = new System.Drawing.Point(0, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.ShowToolTips = true;
+            tabControl1.Size = new System.Drawing.Size(849, 348);
+            tabControl1.TabIndex = 1036;
+            tabControl1.Selected += tabControl1_Selected;
+            tabControl1.Deselecting += tabControl1_Deselecting;
+            tabControl1.DoubleClick += tabControl1_DoubleClick;
+            // 
+            // tabPage1
+            // 
+            tabPage1.BackColor = System.Drawing.Color.LightGray;
+            tabPage1.Controls.Add(label3);
+            tabPage1.Controls.Add(button3);
+            tabPage1.Controls.Add(label5);
+            tabPage1.Controls.Add(checkBox3);
+            tabPage1.Controls.Add(textBox1);
+            tabPage1.Controls.Add(button2);
+            tabPage1.Controls.Add(button1);
+            tabPage1.Controls.Add(checkBox2);
+            tabPage1.Controls.Add(comboBox1);
+            tabPage1.Controls.Add(label7);
+            tabPage1.Controls.Add(checkBox1);
+            tabPage1.Controls.Add(label6);
+            tabPage1.Controls.Add(textBox2);
+            tabPage1.Controls.Add(textBox3);
+            tabPage1.Controls.Add(richTextBox1);
+            tabPage1.Controls.Add(label1);
+            tabPage1.Controls.Add(label4);
+            tabPage1.Controls.Add(label2);
+            tabPage1.Controls.Add(progressBar1);
+            tabPage1.Controls.Add(trackBar1);
+            tabPage1.Location = new System.Drawing.Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            tabPage1.Size = new System.Drawing.Size(841, 320);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "<Selected version>";
+            tabPage1.ToolTipText = "<Nick>";
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new System.Drawing.Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            tabPage2.Size = new System.Drawing.Size(841, 320);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "➕";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             AutoSize = true;
             BackColor = System.Drawing.SystemColors.ControlLight;
-            ClientSize = new System.Drawing.Size(849, 321);
-            Controls.Add(button3);
-            Controls.Add(checkBox3);
-            Controls.Add(button2);
-            Controls.Add(checkBox2);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(richTextBox1);
-            Controls.Add(label4);
-            Controls.Add(progressBar1);
-            Controls.Add(label3);
-            Controls.Add(trackBar1);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(checkBox1);
-            Controls.Add(comboBox1);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
+            ClientSize = new System.Drawing.Size(849, 348);
+            Controls.Add(tabControl1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -328,8 +373,10 @@ namespace PolsatLauncher_beta
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -355,6 +402,9 @@ namespace PolsatLauncher_beta
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 

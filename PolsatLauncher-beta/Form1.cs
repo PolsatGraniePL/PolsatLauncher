@@ -1,12 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
+using System.Reflection;
 using System.Text.Json;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -17,6 +14,7 @@ using CmlLib.Core.Auth.Microsoft.UI.WinForm;
 using CmlLib.Core.Version;
 using CmlLib.Core.Downloader;
 using DiscordRPC;
+using System.Collections;
 
 namespace PolsatLauncher_beta
 {
@@ -40,8 +38,11 @@ namespace PolsatLauncher_beta
             try
             {
                 TextToLog("Application Exit");
-                Process procesToKil = Process.GetProcessById(procesID);
-                procesToKil.Kill();
+                foreach (var i in procesID)
+                {
+                    Process procesToKil = Process.GetProcessById(i.Value);
+                    procesToKil.Kill();
+                }
             }
             catch (Exception ex)
             {
@@ -55,7 +56,7 @@ namespace PolsatLauncher_beta
             SaveCurrentValues();
             TextToLog("Form Closing");
             if (MenuClickZakoncz == true) { return; }
-            if (procesID == -1) { return; }
+            if (procesID.Count < 1) { return; }
             if (MessageBox.Show("Minecraft jest włączony.\nCzy chcesz zminimalizować launcher?", "PolsatLauncher", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 e.Cancel = true;
@@ -76,7 +77,7 @@ namespace PolsatLauncher_beta
 
         void MenuTest1_Click(object sender, EventArgs e)
         {
-            if (procesID == -1)
+            if (procesID.Count < 1)
             {
                 return;
             }
@@ -94,13 +95,20 @@ namespace PolsatLauncher_beta
             try
             {
                 if (checkBox2.Checked)
-                { nick = sessionMC.Username; }
+                {
+                    nick = sessionMC.Username;
+                    tabControl1.SelectedTab.ToolTipText = sessionMC.Username;
+                }
                 else
-                { nick = textBox1.Text; }
+                {
+                    nick = textBox1.Text;
+                    tabControl1.SelectedTab.ToolTipText = textBox1.Text;
+                }
             }
             catch
             {
                 nick = textBox1.Text;
+                tabControl1.SelectedTab.ToolTipText = textBox1.Text;
             }
 
             client.SetPresence(new RichPresence()
@@ -120,6 +128,8 @@ namespace PolsatLauncher_beta
 }
             });
         }
+
+        public List<Control> DefaultPageSaved = new List<Control>();
 
         private async void Form1_Load(object sender, EventArgs e)
         {
@@ -155,10 +165,20 @@ namespace PolsatLauncher_beta
             {
                 comboBox1.Text = launcher.Versions?.LatestReleaseVersion?.Name;
             }
+            tabControl1.SelectedTab.Text = comboBox1.Text;
             int mb = Convert.ToInt32(new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory / 1073741);
             trackBar1.Maximum = mb;
             label3.Text = "Wybrana pamięć: " + trackBar1.Value + "/" + trackBar1.Maximum;
             TextToLog("Form loaded");
+
+            //=========== FORM SAVE ===========
+
+            foreach (Control control in tabPage1.Controls)
+            {
+                DefaultPageSaved.Add(control);
+            }
+
+            TextToLog("Form saved");
         }
 
         private void DisableSysLauncher()
@@ -194,14 +214,14 @@ namespace PolsatLauncher_beta
 
         private MSession sessionMC;
         MicrosoftLoginForm loginForm = new MicrosoftLoginForm();
-        int procesID = -1;
+        Dictionary<TabPage, int> procesID = new Dictionary<TabPage, int>();
         private async void button1_Click(object sender, EventArgs e)
         {
             if (button1.Text == "Zabij proces")
             {
-                Process procesToKil = Process.GetProcessById(procesID);
+                Process procesToKil = Process.GetProcessById(procesID[tabControl1.SelectedTab]);
                 procesToKil.Kill();
-                TextToLog("Process kill");
+                TextToLog($"Process {procesID} kill");
                 return;
             }
             try
@@ -261,6 +281,7 @@ namespace PolsatLauncher_beta
 
                 DisableSysLauncher();
                 button1.Enabled = false;
+                tabControl1.Enabled = false;
                 button1.Text = "Uruchamianie...";
                 var process = await launcher.CreateProcessAsync(selected, launchOption, true);
                 process.EnableRaisingEvents = true;
@@ -278,9 +299,10 @@ namespace PolsatLauncher_beta
                 process.ErrorDataReceived += Process_DataReceived;
                 process.OutputDataReceived += Process_DataReceived;
                 TextToLog("Process start");
+                tabControl1.Enabled = true;
                 button1.Enabled = true;
                 button1.Text = "Zabij proces";
-                procesID = process.Id;
+                procesID.Add(tabControl1.SelectedTab, process.Id);
             }
             catch (Exception ex)
             {
@@ -289,6 +311,7 @@ namespace PolsatLauncher_beta
                 TextToLog(ex.ToString());
                 MessageBox.Show("Wystąpił błąd podczas uruchamiania rozgrywki: " + ex.Message, "PolsatLauncher", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 EnableSysLauncher();
+                tabControl1.Enabled = true;
                 return;
             }
         }
@@ -306,6 +329,7 @@ namespace PolsatLauncher_beta
                     checkBox2.Checked = false;
                     checkBox2.Enabled = false;
                     button1.Enabled = true;
+                    tabControl1.SelectedTab.ToolTipText = textBox1.Text;
                     return;
                 }
                 else
@@ -326,6 +350,7 @@ namespace PolsatLauncher_beta
                 checkBox2.Enabled = true;
                 textBox1.Enabled = false;
                 TextToLog("Success login: " + session.Username);
+                tabControl1.SelectedTab.ToolTipText = session.Username;
                 UpdateDiscordRichPresence();
                 button1.Enabled = true;
             }
@@ -338,6 +363,7 @@ namespace PolsatLauncher_beta
                 checkBox2.Checked = false;
                 checkBox2.Enabled = false;
                 button1.Enabled = true;
+                UpdateDiscordRichPresence();
             }
         }
 
@@ -356,7 +382,7 @@ namespace PolsatLauncher_beta
             }
             else
             {
-                procesID = -1;
+                procesID.Remove(tabControl1.SelectedTab);
                 Show();
                 notifyIcon1.Visible = false;
                 EnableSysLauncher();
@@ -368,24 +394,28 @@ namespace PolsatLauncher_beta
 
         private void Launcher_FileChanged(DownloadFileChangedEventArgs e)
         {
-            richTextBox1.Invoke(new Action(delegate ()
+            try
             {
-                progressBar1.Maximum = e.TotalFileCount;
-                progressBar1.Value = e.ProgressedFileCount;
-                string Text = "Status: " + e.FileName;
-                if (Text.Length > 35)
+                richTextBox1.Invoke(new Action(delegate ()
                 {
-                    Text = Text.Substring(0, 35);
-                }
-                label4.Text = Text;
+                    progressBar1.Maximum = e.TotalFileCount;
+                    progressBar1.Value = e.ProgressedFileCount;
+                    string Text = "Status: " + e.FileName;
+                    if (Text.Length > 35)
+                    {
+                        Text = Text.Substring(0, 35);
+                    }
+                    label4.Text = Text;
 
-                var data = DateTime.Now.ToString("HH:mm:ss");
-                AddLog("\n(" + data + ") [" + e.FileKind.ToString() + "] " + e.FileName + " - " + e.ProgressedFileCount + "/" + e.TotalFileCount);
-                if (e.ProgressedFileCount == e.TotalFileCount)
-                {
-                    TextToLog("Resource loaded");
-                }
-            }));
+                    var data = DateTime.Now.ToString("HH:mm:ss");
+                    AddLog("\n(" + data + ") [" + e.FileKind.ToString() + "] " + e.FileName + " - " + e.ProgressedFileCount + "/" + e.TotalFileCount);
+                    if (e.ProgressedFileCount == e.TotalFileCount)
+                    {
+                        TextToLog("Resource loaded");
+                    }
+                }));
+            }
+            catch { }
         }
 
         private void Launcher_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
@@ -398,10 +428,23 @@ namespace PolsatLauncher_beta
         private void trackBar1_Scroll(object sender, EventArgs e)
         { label3.Text = "Wybrana pamięć: " + trackBar1.Value + "/" + trackBar1.Maximum; }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) { UpdateDiscordRichPresence(); }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab.Text = comboBox1.Text;
+            UpdateDiscordRichPresence();
+        }
 
-        private void textBox1_TextChanged(object sender, EventArgs e) { UpdateDiscordRichPresence(); }
+        private void comboBox1_TextUpdate(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab.Text = comboBox1.Text;
+            UpdateDiscordRichPresence();
+        }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            tabControl1.SelectedTab.ToolTipText = textBox1.Text;
+            UpdateDiscordRichPresence();
+        }
 
         string premiumstatus = "Cracked";
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -479,7 +522,7 @@ namespace PolsatLauncher_beta
                         cdataStartIndex += "<![CDATA[".Length;
                         string cdataValue = xmlCode.Substring(cdataStartIndex, cdataEndIndex - cdataStartIndex);
                         var data = DateTime.Now.ToString("HH:mm:ss");
-                        AddLog("\n(" + data + ") [Minecraft] " + cdataValue);
+                        AddLog("\n(" + data + $") [Minecraft: {procesID[tabControl1.SelectedTab]}] " + cdataValue);
                     }
                 }
                 catch
@@ -560,6 +603,75 @@ namespace PolsatLauncher_beta
             public bool CheckBox2Value { get; set; }
             public bool CheckBox3Value { get; set; }
             public int TrackBar1Value { get; set; }
+        }
+
+        private void tabControl1_DoubleClick(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab.Text != "➕")
+            {
+                if (MessageBox.Show("Czy na pewno chcesz usunąć tą zakładkę?\n(W przypadku włączonej gry, zostanie ona wyłączona)", "PolsatLauncher", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        Process procesToKil = Process.GetProcessById(procesID[tabControl1.SelectedTab]);
+                        procesToKil.Kill();
+                    }
+                    catch { }
+                    tabControl1.TabPages.Remove(tabControl1.SelectedTab);
+                }
+            }
+        }
+
+        private Dictionary<TabPage, Tuple<string, string>> tabPageValues = new Dictionary<TabPage, Tuple<string, string>>();
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            if (tabControl1.SelectedTab.Text == "➕")
+            {
+                var path = new MinecraftPath();
+                var launcher = new CMLauncher(path);
+
+                tabControl1.TabPages.Add("➕");
+                tabControl1.SelectedTab.Text = comboBox1.Text;
+                tabControl1.SelectedTab.ToolTipText = textBox1.Text;
+                tabControl1.SelectedTab.BackColor = Color.LightGray;
+                foreach (Control control in DefaultPageSaved)
+                {
+                    tabControl1.SelectedTab.Controls.Add(control);
+                }
+
+                // restore to default
+                EnableSysLauncher();
+                button1.Text = "Uruchom minecraft";
+                richTextBox1.Text = "";
+                progressBar1.Value = 0;
+            }
+            else
+            {
+                foreach (Control control in DefaultPageSaved)
+                {
+                    tabControl1.SelectedTab.Controls.Add(control);
+                }
+
+                // restore to selected
+                if (tabPageValues.ContainsKey(tabControl1.SelectedTab))
+                {
+                    var values = tabPageValues[tabControl1.SelectedTab];
+                    button1.Text = values.Item1;
+                    richTextBox1.Text = values.Item2;
+                }
+            }
+        }
+
+        private void tabControl1_Deselecting(object sender, TabControlCancelEventArgs e)
+        {
+            try
+            {
+                tabPageValues[e.TabPage] = new Tuple<string, string>(button1.Text, richTextBox1.Text);
+            }
+            catch
+            {
+
+            }
         }
     }
 }
