@@ -170,7 +170,7 @@ namespace PolsatLauncher_beta
             trackBar1.Maximum = mb;
             label3.Text = "Wybrana pamięć: " + trackBar1.Value + "/" + trackBar1.Maximum;
             TextToLog("Form loaded");
-
+            
             //=========== FORM SAVE ===========
 
             foreach (Control control in tabPage1.Controls)
@@ -241,7 +241,7 @@ namespace PolsatLauncher_beta
                 {
 
                     Session = sessionMC,
-
+                    
                     Path = new MinecraftPath(),
                     MaximumRamMb = trackBar1.Value,
 
@@ -623,6 +623,11 @@ namespace PolsatLauncher_beta
         }
 
         private Dictionary<TabPage, Tuple<string, string>> tabPageValues = new Dictionary<TabPage, Tuple<string, string>>();
+        // JESZCZE TRUE/FALSE ENABLED DODAĆ BO JAK SIĘ WŁĄCZA TO INNYCH NIE MOŻNA RUSZAĆ JAK NA ENABLED FALSE SĄ...
+        // Dodać do messagebox.show przy application exit, zamiast yes, no - yes, bo, cancel.
+        // + discord rcp naprawić...
+
+
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             if (tabControl1.SelectedTab.Text == "➕")
@@ -668,10 +673,7 @@ namespace PolsatLauncher_beta
             {
                 tabPageValues[e.TabPage] = new Tuple<string, string>(button1.Text, richTextBox1.Text);
             }
-            catch
-            {
-
-            }
+            catch { }
         }
     }
 }
