@@ -54,15 +54,19 @@ namespace PolsatLauncher_beta
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveCurrentValues();
-            TextToLog("Form Closing");
+            TextToLog("Form Closing Event");
             if (MenuClickZakoncz == true) { return; }
             if (procesID.Count < 1) { return; }
-            if (MessageBox.Show("Minecraft jest włączony.\nCzy chcesz zminimalizować launcher?", "PolsatLauncher", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            DialogResult dialog = MessageBox.Show("Minecraft jest włączony!\nCzy chcesz zminimalizować launcher?", "PolsatLauncher", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            if (dialog == DialogResult.Yes)
             {
                 e.Cancel = true;
                 Hide();
                 notifyIcon1.Visible = true;
                 return;
+            }
+            else if (dialog == DialogResult.Cancel) { 
+                e.Cancel = true;
             }
         }
 
@@ -483,12 +487,15 @@ namespace PolsatLauncher_beta
                 richTextBox1.Visible = false;
                 this.Size = new Size(this.Size.Width - 434, this.Size.Height);
                 button3.Text = ">";
+                logStringBuilder.Clear();
             }
             else if (button3.Text == ">")
             {
                 this.Size = new Size(this.Size.Width + 434, this.Size.Height);
                 button3.Text = "<";
                 richTextBox1.Visible = true;
+                richTextBox1.AppendText(logStringBuilder.ToString());
+                richTextBox1.ScrollToCaret();
             }
 
         }
@@ -532,10 +539,18 @@ namespace PolsatLauncher_beta
             }));
         }
 
+        private StringBuilder logStringBuilder = new StringBuilder();
+
         private void AddLog(string text)
         {
-            richTextBox1.AppendText(text);
-            richTextBox1.ScrollToCaret();
+            if (button3.Text == "<")
+            {
+                richTextBox1.AppendText(text);
+                richTextBox1.ScrollToCaret();
+            }
+            else {
+                logStringBuilder.Append(text);
+            }
         }
 
         private void SaveCurrentValues()
@@ -623,10 +638,8 @@ namespace PolsatLauncher_beta
         }
 
         private Dictionary<TabPage, Tuple<string, string>> tabPageValues = new Dictionary<TabPage, Tuple<string, string>>();
-        // JESZCZE TRUE/FALSE ENABLED DODAĆ BO JAK SIĘ WŁĄCZA TO INNYCH NIE MOŻNA RUSZAĆ JAK NA ENABLED FALSE SĄ...
-        // Dodać do messagebox.show przy application exit, zamiast yes, no - yes, bo, cancel.
-        // + discord rcp naprawić...
 
+        // OD NOWA LANCHER WERSJA 2.0 W PRZYSZŁOŚCI -_- (Bo to co tu się dzieje to porażka XD)
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
