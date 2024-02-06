@@ -14,7 +14,7 @@ Interakcja z użytkownikiem:
 - Użytkownika na podstawie własnych wymagań uzupełnia poszczególne pola takie jak wersja, nick, ilość ramu itd.
 
 
-# Aktualizacje (Wersyfikacja):
+# Aktualizacje:
 ## Etap e1: Zaktualizowanie projektu pod wymagania [Beta-1.0.0]
 ## Etap e2: Wdrożenie clean code. [Beta-1.1.0]
 	 [Beta-1.0.1] - Wdrożenie zasady DDD
