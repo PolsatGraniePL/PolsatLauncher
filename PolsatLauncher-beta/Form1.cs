@@ -355,7 +355,9 @@ namespace PolsatLauncher_beta
                 textBox1.Enabled = false;
                 TextToLog("Success login: " + session.Username);
                 tabControl1.SelectedTab.ToolTipText = session.Username;
-                UpdateDiscordRichPresence();
+                if (checkBox3.Checked) {
+                    UpdateDiscordRichPresence();
+                }
                 button1.Enabled = true;
             }
             catch (Exception ex)
