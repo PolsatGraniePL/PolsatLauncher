@@ -574,7 +574,7 @@ namespace PolsatLauncher_beta
             File.WriteAllText(filename, jsonData);
         }
 
-        private void LoadCurrentValues(object sender)
+        private void LoadCurrentValues(object sender) 
         {
             try
             {

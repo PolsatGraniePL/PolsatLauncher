@@ -54,6 +54,7 @@ namespace PolsatLauncher_beta
             button3 = new System.Windows.Forms.Button();
             tabControl1 = new System.Windows.Forms.TabControl();
             tabPage1 = new System.Windows.Forms.TabPage();
+            panel1 = new System.Windows.Forms.Panel();
             tabPage2 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             tabControl1.SuspendLayout();
@@ -62,6 +63,7 @@ namespace PolsatLauncher_beta
             // 
             // textBox1
             // 
+            textBox1.BackColor = System.Drawing.Color.FromArgb(215, 215, 215);
             textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBox1.Location = new System.Drawing.Point(55, 74);
             textBox1.Name = "textBox1";
@@ -71,7 +73,7 @@ namespace PolsatLauncher_beta
             // 
             // button1
             // 
-            button1.BackColor = System.Drawing.SystemColors.Control;
+            button1.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
             button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             button1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -85,8 +87,9 @@ namespace PolsatLauncher_beta
             // 
             // comboBox1
             // 
-            comboBox1.BackColor = System.Drawing.Color.White;
+            comboBox1.BackColor = System.Drawing.Color.FromArgb(215, 215, 215);
             comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            comboBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             comboBox1.FormattingEnabled = true;
             comboBox1.Location = new System.Drawing.Point(55, 13);
             comboBox1.Name = "comboBox1";
@@ -110,6 +113,7 @@ namespace PolsatLauncher_beta
             // 
             // textBox2
             // 
+            textBox2.BackColor = System.Drawing.Color.FromArgb(215, 215, 215);
             textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBox2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textBox2.Location = new System.Drawing.Point(193, 45);
@@ -121,6 +125,7 @@ namespace PolsatLauncher_beta
             // 
             // textBox3
             // 
+            textBox3.BackColor = System.Drawing.Color.FromArgb(215, 215, 215);
             textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             textBox3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             textBox3.Location = new System.Drawing.Point(286, 45);
@@ -177,7 +182,7 @@ namespace PolsatLauncher_beta
             // 
             // progressBar1
             // 
-            progressBar1.BackColor = System.Drawing.SystemColors.Control;
+            progressBar1.BackColor = System.Drawing.SystemColors.ControlDark;
             progressBar1.Location = new System.Drawing.Point(8, 291);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new System.Drawing.Size(393, 23);
@@ -252,7 +257,7 @@ namespace PolsatLauncher_beta
             // 
             // button2
             // 
-            button2.BackColor = System.Drawing.SystemColors.Control;
+            button2.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
             button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             button2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -319,7 +324,8 @@ namespace PolsatLauncher_beta
             // 
             // tabPage1
             // 
-            tabPage1.BackColor = System.Drawing.Color.LightGray;
+            tabPage1.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
+            tabPage1.Controls.Add(panel1);
             tabPage1.Controls.Add(label3);
             tabPage1.Controls.Add(button3);
             tabPage1.Controls.Add(label5);
@@ -347,6 +353,14 @@ namespace PolsatLauncher_beta
             tabPage1.TabIndex = 0;
             tabPage1.Text = "<Selected version>";
             tabPage1.ToolTipText = "<Nick>";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
+            panel1.Location = new System.Drawing.Point(55, 89);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(346, 3);
+            panel1.TabIndex = 1036;
             // 
             // tabPage2
             // 
@@ -405,6 +419,7 @@ namespace PolsatLauncher_beta
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
