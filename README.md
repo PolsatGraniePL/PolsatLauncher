@@ -23,3 +23,4 @@ Interakcja z użytkownikiem:
 	 [Beta-1.0.4] - Wdrożenie zasady DRY
 	 [Beta-1.1.0] - Wdrożenie zasady SOLID
 ## Etap e4: Poprawienie odpowiednio kodu pod perypetie testowania oprogramowania [Beta-1.2.0]
+## Etap e6: Przeprowadzenie debugowania oprogramowania. Napotkany błąd naprawiono [Beta-1.3.0]
