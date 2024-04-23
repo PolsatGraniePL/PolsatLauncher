@@ -15,7 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_67B6DE11E9F946D1B6D11E34647EAC68"
+        "MsmKey" = "8:_5D32C01A60D24E6E89FD317E8BC324C0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -122,9 +122,9 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_67B6DE11E9F946D1B6D11E34647EAC68"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5D32C01A60D24E6E89FD317E8BC324C0"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\OneDrive\\Pulpit\\launcher\\stare\\PolsatLauncher.ico"
+            "SourcePath" = "8:..\\..\\..\\..\\OneDrive\\Pulpit\\lancher\\PolsatLauncher.ico"
             "TargetName" = "8:PolsatLauncher.ico"
             "Tag" = "8:"
             "Folder" = "8:_EE8CF4215AEF447182576E8A0F6983C9"
@@ -216,7 +216,7 @@
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:_67B6DE11E9F946D1B6D11E34647EAC68"
+        "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -330,7 +330,7 @@
             "Target" = "8:_B82564DB920D4B1E86FD75883732AF59"
             "Folder" = "8:_A0E6A5E7E8D1488386CCCA61DB113F34"
             "WorkingFolder" = "8:_EE8CF4215AEF447182576E8A0F6983C9"
-            "Icon" = "8:_67B6DE11E9F946D1B6D11E34647EAC68"
+            "Icon" = "8:_5D32C01A60D24E6E89FD317E8BC324C0"
             "Feature" = "8:"
             }
         }
@@ -734,7 +734,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B82564DB920D4B1E86FD75883732AF59"
             {
-            "SourcePath" = "8:..\\PolsatLauncher-beta\\obj\\Debug\\net5.0-windows\\apphost.exe"
+            "SourcePath" = "8:..\\PolsatLauncher-beta\\obj\\Release\\net5.0-windows\\apphost.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_EE8CF4215AEF447182576E8A0F6983C9"
